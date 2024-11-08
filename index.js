@@ -46,34 +46,34 @@ app.delete('/todos/:id', async (req, res) => {
         const values = [id]
         const [rows] = await connection.execute(sql, values)
         console.log(rows.affectedRows);
-        res.json({ msg:`${rows.affectedRows==0 ? "Nincs törlendő adat!" : "Sikeres törlés!"}`})
+        res.json({ msg: `${rows.affectedRows == 0 ? "Nincs törlendő adat!" : "Sikeres törlés!"}` })
     } catch (error) {
         console.log(error);
     }
 })
 
-app.put('/todos/completed/:id', async (req,res) =>{
+app.put('/todos/completed/:id', async (req, res) => {
     const { id } = req.params
     try {
         const sql = "update todos set completed = not completed where id=?"
         const values = [id]
         const [rows] = await connection.execute(sql, values)
         console.log(rows.affectedRows);
-        res.json({ msg:`${rows.affectedRows==0 ? "Nincs frissítendő adat!" : "Sikeres frissítés!"}`})
+        res.json({ msg: `${rows.affectedRows == 0 ? "Nincs frissítendő adat!" : "Sikeres frissítés!"}` })
     } catch (error) {
         console.log(error);
     }
 })
 
-app.put('/todos/task/:id', async (req,res) =>{
+app.put('/todos/task/:id', async (req, res) => {
     const { id } = req.params
     const { task } = req.body
     try {
         const sql = "update todos set task = ? where id=?"
-        const values = [task,id]
+        const values = [task, id]
         const [rows] = await connection.execute(sql, values)
         console.log(rows.affectedRows);
-        res.json({ msg:`${rows.affectedRows==0 ? "Nincs  adat!" : "Sikeres !"}`})
+        res.json({ msg: `${rows.affectedRows == 0 ? "Nincs  adat!" : "Sikeres !"}` })
     } catch (error) {
         console.log(error);
     }
